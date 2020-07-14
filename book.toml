@@ -1,0 +1,6 @@
+[book]
+authors = ["Chun Liu"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Azure Scrolls"
