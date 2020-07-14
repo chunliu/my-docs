@@ -2,4 +2,5 @@
 
 - [Tutorial - Integrate App Gateway, APIM and Self-Hosted Gateway](apim/integration-overview.md)
   - [Prepare the VNET environment](apim/integration-prepare-environment.md)
-  - [Integrate AppGW and APIM](apim/integration-apim-appgw-vnet-internal.md)
+  - [Connect APIM to internal VNET](apim/integration-apim-vnet-internal.md)
+  - [Integrate APIM with AppGW](apim/integration-appgw-apim.md)
