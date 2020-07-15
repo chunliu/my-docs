@@ -4,10 +4,10 @@ In the previous tutorial, you created the virtual network, the private DNS zone 
 
 In this tutorial, you learn to:
 
-- Connect the APIM instance in the virtual network in Internal mode
-- Create custom domain names in the private DNS zone
-- Create self-signed certificates with PowerShell script
-- Configure the APIM instance with custom domain names
+- ✅ Connect the APIM instance in the virtual network in Internal mode
+- ✅ Create custom domain names in the private DNS zone
+- ✅ Create self-signed certificates with PowerShell script
+- ✅ Configure the APIM instance with custom domain names
 
 ## Connect APIM instance to the VNET in Internal mode
 
@@ -15,9 +15,12 @@ In this tutorial, you learn to:
 1. Click **Virtual network** under **Deployment and infrastructure** to open the VNET integration page.
 1. Choose **Internal** for **Virtual network** and click the VNET option below to choose the VNET and the subnet.
 1. Choose **apim-vnet** for the virtual network and **apim-subnet** for the subnet. Click **Apply**.
+
     ![apim internal vnet](images/apim-internal-vnet.png)
+
 1. Click **Save** to apply the changes. The changes could take 15 to 45 minutes to be applied.
 1. When the APIM instance is deployed in the VNET successfully, you can find the **private** and **public** virtual IP addresses for the APIM instance on the **Overview** page. Take a note for the private IP address. We need to use it later.
+
     ![private IP address](images/apim-private-ip.png)
 
 For more information about the impact of the VNET Internal mode, please see [this document](https://docs.microsoft.com/azure/api-management/api-management-using-with-internal-vnet).
@@ -78,6 +81,7 @@ In the production environment, Azure Key Vault is recommended to manage the cert
 1. In the Azure Portal, go to the APIM instance.
 1. Click **Custom domains** and click **Add**.
 1. Configure the custom domain for the **Gateway** and **Management** with the following values.
+
     ![custom domain](images/apim-custom-domain.png)
 
 Type    |Hostname    |Certificate file    |Password    |Default SSL binding 

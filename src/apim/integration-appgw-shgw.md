@@ -4,17 +4,19 @@ In the previous tutorial, you've deployed the self-hosted gateway in the AKS clu
 
 In this tutorial, you learn to:
 
-- Configure the domain name for the self-hosted gateway
-- Integrate the AppGW with the self-hosted gateway
+- ✅ Configure the domain name for the self-hosted gateway
+- ✅ Integrate the AppGW with the self-hosted gateway
 
 ## Configure the domain name for the self-hosted gateway
 
 Before the self-hosted gateway can be added to the backend pool of the AppGW, you need to configure a custom domain name for it.
 
 1. Open Cloud Shell and run the following command to find the IP address of the self-hosted gateway service.
+
     ```bash
     kubectl get service
     ```
+
 1. Take a note of the **External-IP** address of **apim-shgw** service.
 
     > The external IP of the service is within the address space of the VNET because we used an internal load balancer for it.
@@ -50,6 +52,6 @@ Before the self-hosted gateway can be added to the backend pool of the AppGW, yo
 
     ![app gateway both backend targets are healthy](images/appgw-both-backend-healthy.png)
 
-At this point, you've completed all tasks and steps that are needed to integrate Application Gateway, API Management and Self-Hosted Gateway in and internal virtual network. Congratulations! 🎉
+At this point, you've completed all tasks and steps that are needed to integrate Application Gateway, API Management and Self-Hosted Gateway in and internal virtual network.
 
 Move on to the last tutorial of this series, we will run a quick test to see how the whole environment works.

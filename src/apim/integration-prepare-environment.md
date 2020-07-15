@@ -2,9 +2,9 @@
 
 In this tutorial, you learn to:
 
-- Create a virtual network with 3 subnets
-- Create a private DNS zone and link it to the virtual network
-- Create an API Management instance
+- ✅ Create a virtual network with 3 subnets
+- ✅ Create a private DNS zone and link it to the virtual network
+- ✅ Create an API Management instance
 
 ## Create the virtual network
 
