@@ -1,0 +1,29 @@
+name: Push to gh-pages
+
+on:
+  push:
+    tags: 
+      - v*
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install mdbook
+      run: cargo install mdbook
+    - name: Build the book
+      run: mdbook build
+    - name: Copy CNAME
+      run: cp ./config/CNAME ./book/CNAME
+
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./book
