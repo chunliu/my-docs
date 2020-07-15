@@ -27,11 +27,11 @@ For more information about the impact of the VNET Internal mode, please see [thi
 
 ## Create custom domain names
 
-With VNET Internal mode, we need to configure the APIM instance with custom domain names before we can access its service endpoints. In our scenarios, we need at least 2 domain names, one for the **Gateway** and the other for the **Management**.
+With VNET Internal mode, we need to configure the APIM instance with custom domain names before we can access its service endpoints. In our scenarios, we need at least 2 domain names, one for the **Gateway** endpoint and the other for the **Management** endpoint.
 
 1. In Azure Portal, open the private DNS zone **contoso.net**.
 1. Click **Record set** to add a new record set.
-1. Create the record set with **Name**: `apim-gw` and **IP address**: `172.17.0.5`.
+1. Create the record set with **Name**: `apim-gw` and **IP address**: `172.17.0.5` which is the private IP address we get in previous steps.
     ![record set](images/private-zone-recordset.png)
 1. Repeat the steps to create another record set with **Name**: `apim-mgmt` and **IP address**: `172.17.0.5`.
 
@@ -39,7 +39,7 @@ With VNET Internal mode, we need to configure the APIM instance with custom doma
 
 We also need certificates for SSL bindings of APIM. In the production environment, you should use the certificates that are trusted by your organization. We use self-signed certificates in these tutorials just for demo purpose.
 
-To make things easier, we create 2 certificates with the following PowerShell script. One of the certificates is a root certificate for signing, and the other is a wildcard certificate for SSL bindings of the custom domain names.
+To make things easier, we create 2 certificates with the following PowerShell script. One of the certificates is a root certificate for signing, and the other is a wildcard certificate (CN=*.contoso.net) for SSL bindings of the custom domain names.
 
 ```PowerShell
 # Create the root signing cert
@@ -80,7 +80,7 @@ In the production environment, Azure Key Vault is recommended to manage the cert
 
 1. In the Azure Portal, go to the APIM instance.
 1. Click **Custom domains** and click **Add**.
-1. Configure the custom domain for the **Gateway** and **Management** with the following values.
+1. Configure the custom domain for the **Gateway** and **Management** endpoints with the following values.
 
     ![custom domain](images/apim-custom-domain.png)
 

@@ -6,7 +6,7 @@ An API Management (APIM) instance can be deployed in a virtual network (VNET) in
 
 In this series of tutorials, we discuss how to integrate an AppGW with an APIM instance and a self-hosted gateway in an virtual network in internal mode. You will learn the detailed process and steps, as well as things and issues you may need to pay attention.
 
-The following diagram shows the components we will deploy in the tutorials. It is not meant to be a reference architecture of APIM, but just to show what the deployment would look like. As the purpose of the tutorials is to show the possibility and how-to for such a deployment, we start the deployment from scratch and do it step by step.
+The following diagram shows the components we will deploy in the tutorials. It is not meant to be a reference architecture of APIM, but just to show you what the deployment would look like. As the purpose of the tutorials is to show the possibility and how-to for such a deployment, we start the deployment from scratch and do it step by step.
 
 ![apim environment](images/apim-environment.png)
 

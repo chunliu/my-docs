@@ -47,6 +47,6 @@ In the tutorials, we use a Private DNS Zone to manage the custom domain names.
 
 In the **apim-rg** resource group, create an API Management instance. For more details, please see [Create a new Azure API Management service instance](https://docs.microsoft.com/azure/api-management/get-started-create-service-instance).
 
-Please make sure you choose **East US** as the region which is the same as the virtual network, and choose either `Developer` or `Premium` as the **Pricing tier**. Only these two tiers support the virtual network integration.
+Please make sure you choose **East US** for the region which is the same as the virtual network, and choose either `Developer` or `Premium` for the **Pricing tier**. Only these two tiers support the virtual network integration.
 
 When the APIM instance is created, all steps in this tutorial are completed. Let's move to the next one.

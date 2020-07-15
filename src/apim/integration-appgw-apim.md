@@ -41,7 +41,7 @@ When the deployment of the AppGW is completed, if you go to the resource, you wo
     ![AppGW custom probe](images/appgw-custom-probe.png)
 
 1. Uncheck **I want to test the backend health before adding the health probe** option and click **Add**.
-1. Go to **Backend health**. The status of the backend should be **Healthy** now.
+1. Go to **Backend health** and refresh. The status of the backend should be **Healthy** now.
 
     ![AppGW healthy probe](images/appgw-custom-probe-healthy.png)
 
@@ -50,7 +50,7 @@ When the deployment of the AppGW is completed, if you go to the resource, you wo
 We can verify if the integration works by sending a request to the public IP address of the AppGW. We do it with [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview) in this tutorial. You can also do it with other tools such as Postman.
 
 1. In the Azure Portal, open Azure Cloud Shell. Choose **Bash** for the shell.
-1. Run the following command with `curl`. You can find the [subscription](https://docs.microsoft.com/azure/api-management/api-management-subscriptions) key of APIM on its **Subscriptions** page, and the public IP address of AppGW on its **Overview** page.
+1. Run the following command with `curl`. You can find the [subscription](https://docs.microsoft.com/azure/api-management/api-management-subscriptions) key of APIM on the **Subscriptions** page of APIM, and the public IP address of AppGW on the **Overview** page of AppGW.
 
     ```bash
     curl -I -H "Ocp-Apim-Subscription-Key: [subscription key]" http://[AppGW public IP]/echo/resource

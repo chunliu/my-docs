@@ -16,13 +16,13 @@ The self-hosted gateway of APIM is a containerized, functionally-equivalent vers
 To allow the AKS cluster to access the VNET and subnet, we need to configure it with a [service principal](https://docs.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object).
 
 1. In the Azure Portal, open Cloud Shell and choose **Bash** as the shell.
-1. Run the following command to create the service principal and note down the output.
+1. Run the following command to create the service principal and take a note on the output. We need to use it later.
 
     ```bash
     az ad sp create-for-rbac --skip-assignment
     ```
 
-1. Assign the service principal **Network Contributor** role to the VNET with the following command. `<appId>` is the value of `appId` from the output of the above command.
+1. Assign the service principal **Network Contributor** role to the VNET with the following command. `<appId>` is the value of `appId` from the output of the above step.
 
     ```bash
     VNET_ID=$(az network vnet show --resource-group apim-rg --name apim-vnet --query id -o tsv)
@@ -43,7 +43,7 @@ We deploy the AKS cluster to the VNET and the corresponding subnet. For details 
     ![aks service principal](images/aks-service-principal.png)
 
 1. Move to **Next: Networking**.
-1. Choose **Advanced** for **Network configuration** option and apply other settings as shown in the diagram below.
+1. Choose **Advanced** for **Network configuration** option and apply the settings as shown in the diagram below.
 
     ![aks vnet](images/aks-vnet.png)
 
