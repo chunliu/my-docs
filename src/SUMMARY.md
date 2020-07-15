@@ -5,3 +5,4 @@
   - [Connect APIM to internal VNET](apim/integration-apim-vnet-internal.md)
   - [Integrate APIM with AppGW](apim/integration-appgw-apim.md)
   - [Deploy self-hosted gateway](apim/integration-deploy-shgw.md)
+  - [Integrate AppGW with self-hosted gateway](apim/integration-appgw-shgw.md)
