@@ -4,3 +4,4 @@
   - [Prepare the VNET environment](apim/integration-prepare-environment.md)
   - [Connect APIM to internal VNET](apim/integration-apim-vnet-internal.md)
   - [Integrate APIM with AppGW](apim/integration-appgw-apim.md)
+  - [Deploy self-hosted gateway](apim/integration-deploy-shgw.md)

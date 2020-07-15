@@ -6,6 +6,7 @@ In this tutorial, you learn to:
 
 - Create Application Gateway
 - Create the custom healthy probe for APIM
+- Verify the integration
 
 ## Create Application Gateway
 
@@ -37,9 +38,9 @@ When the deployment of the AppGW is completed, if you go to the resource, you wo
 
 ## Verify the integration
 
-We can verify if the integration works by sending a request to the public IP address of the AppGW. We do it with [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview).
+We can verify if the integration works by sending a request to the public IP address of the AppGW. We do it with [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview) in this tutorial. You can also do it with other tools such as Postman.
 
-1. In the Azure Portal, open Azure Cloud Shell.
+1. In the Azure Portal, open Azure Cloud Shell. Choose **Bash** for the shell.
 1. Run the following command with `curl`. You can find the [subscription](https://docs.microsoft.com/azure/api-management/api-management-subscriptions) key of APIM on its **Subscriptions** page, and the public IP address of AppGW on its **Overview** page.
 
     ```bash
