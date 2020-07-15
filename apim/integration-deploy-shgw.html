@@ -1,0 +1,455 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Deploy self-hosted gateway - Azure Scrolls</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../toc.html">TOC</a></li><li class="chapter-item expanded "><a href="../apim/integration-overview.html"><strong aria-hidden="true">1.</strong> Tutorials - Integrate App Gateway, APIM and Self-Hosted Gateway</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../apim/integration-prepare-environment.html"><strong aria-hidden="true">1.1.</strong> Prepare the VNET environment</a></li><li class="chapter-item expanded "><a href="../apim/integration-apim-vnet-internal.html"><strong aria-hidden="true">1.2.</strong> Connect APIM to internal VNET</a></li><li class="chapter-item expanded "><a href="../apim/integration-appgw-apim.html"><strong aria-hidden="true">1.3.</strong> Integrate APIM with AppGW</a></li><li class="chapter-item expanded "><a href="../apim/integration-deploy-shgw.html" class="active"><strong aria-hidden="true">1.4.</strong> Deploy self-hosted gateway</a></li><li class="chapter-item expanded "><a href="../apim/integration-appgw-shgw.html"><strong aria-hidden="true">1.5.</strong> Integrate AppGW with self-hosted gateway</a></li><li class="chapter-item expanded "><a href="../apim/integration-verification.html"><strong aria-hidden="true">1.6.</strong> Verify the deployment</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Azure Scrolls</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#deploy-self-hosted-gateway" id="deploy-self-hosted-gateway">Deploy self-hosted gateway</a></h1>
+<p>In the previous tutorials, you've deployed the APIM instance in the internal VNET and integrated it with the AppGW. In this tutorial, we expand the deployment with a <a href="https://docs.microsoft.com/azure/api-management/self-hosted-gateway-overview">self-hosted gateway</a> to extend the capacity and redundancy of the APIM instance.</p>
+<p>In this tutorial, you learn to:</p>
+<ul>
+<li>✅ Deploy an Azure Kubernetes Service (AKS) cluster in the VNET</li>
+<li>✅ Deploy a self-hosted gateway in the AKS cluster</li>
+</ul>
+<h2><a class="header" href="#deploy-an-aks-cluster-to-host-the-self-hosted-gateway" id="deploy-an-aks-cluster-to-host-the-self-hosted-gateway">Deploy an AKS cluster to host the self-hosted gateway</a></h2>
+<p>The self-hosted gateway of APIM is a containerized, functionally-equivalent version of the managed gateway that is part of every APIM service deployed. It can be deployed to Docker, Kubernetes, or any other container orchestration solution running on a server cluster on premises, cloud infrastructure, or for evaluation and development purposes, on a personal computer. In this tutorial, we deploy an AKS cluster to host the self-hosted gateway.</p>
+<h3><a class="header" href="#create-a-service-principal-and-assign-permissions" id="create-a-service-principal-and-assign-permissions">Create a service principal and assign permissions</a></h3>
+<p>To allow the AKS cluster to access the VNET and subnet, we need to configure it with a <a href="https://docs.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object">service principal</a>.</p>
+<ol>
+<li>
+<p>In the Azure Portal, open Cloud Shell and choose <strong>Bash</strong> as the shell.</p>
+</li>
+<li>
+<p>Run the following command to create the service principal and note down the output.</p>
+<pre><code class="language-bash">az ad sp create-for-rbac --skip-assignment
+</code></pre>
+</li>
+<li>
+<p>Assign the service principal <strong>Network Contributor</strong> role to the VNET with the following command. <code>&lt;appId&gt;</code> is the value of <code>appId</code> from the output of the above command.</p>
+<pre><code class="language-bash">VNET_ID=$(az network vnet show --resource-group apim-rg --name apim-vnet --query id -o tsv)
+az role assignment create --assignee &lt;appId&gt; --scope $VNET_ID --role &quot;Network Contributor&quot;
+</code></pre>
+</li>
+</ol>
+<h3><a class="header" href="#deploy-the-aks-cluster-with-azure-portal" id="deploy-the-aks-cluster-with-azure-portal">Deploy the AKS cluster with Azure Portal</a></h3>
+<p>We deploy the AKS cluster to the VNET and the corresponding subnet. For details about the AKS networking, please see <a href="https://docs.microsoft.com/azure/aks/configure-kubenet">this document</a>.</p>
+<ol>
+<li>
+<p>In the Azure Portal, add a new resource to the <strong>apim-rg</strong> resource group.</p>
+</li>
+<li>
+<p>Search <code>Kubernetes Service</code> and click <strong>Create</strong>.</p>
+</li>
+<li>
+<p>Choose resource group <code>apim-rg</code>, region <code>East US</code> and give the cluster a name such as <code>apim-aks</code>. Accept other default settings and move to <strong>Next: Node pools</strong>.</p>
+</li>
+<li>
+<p>Accept default settings for node pools and move to <strong>Next: Authentication</strong>.</p>
+</li>
+<li>
+<p>Choose <strong>Service principal</strong> as the <strong>Authentication method</strong> and click <strong>Configure service principal</strong> to configure it.</p>
+</li>
+<li>
+<p>Choose <strong>Use existing</strong>, and input the <strong>client ID</strong> and <strong>client secret</strong>. They are the values of <strong>appID</strong> and <strong>password</strong> from the output of creating the service principal command.</p>
+<p><img src="images/aks-service-principal.png" alt="aks service principal" /></p>
+</li>
+<li>
+<p>Move to <strong>Next: Networking</strong>.</p>
+</li>
+<li>
+<p>Choose <strong>Advanced</strong> for <strong>Network configuration</strong> option and apply other settings as shown in the diagram below.</p>
+<p><img src="images/aks-vnet.png" alt="aks vnet" /></p>
+</li>
+<li>
+<p>Click <strong>Review + create</strong> and then click <strong>Create</strong> to deploy the AKS cluster.</p>
+</li>
+<li>
+<p>When the deployment is completed, open Cloud Shell and run the following command. Make sure the cluster info of the AKS cluster can be shown.</p>
+<pre><code class="language-bash">az aks get-credentials --resource-group apim-rg --name apim-aks
+kubectl cluster-info
+</code></pre>
+</li>
+</ol>
+<h2><a class="header" href="#deploy-the-self-hosted-gateway" id="deploy-the-self-hosted-gateway">Deploy the self-hosted gateway</a></h2>
+<ol>
+<li>
+<p>In the Azure Portal, go to the API Management.</p>
+</li>
+<li>
+<p>Click <strong>Gateways</strong> and click <strong>Add</strong> to add a self-hosted gateway as shown below.</p>
+<p><img src="images/apim-add-shgw.png" alt="add self-hosted gateway" /></p>
+</li>
+<li>
+<p>When the gateway is added, click it to open its settings.</p>
+</li>
+<li>
+<p>Click <strong>Deployment</strong> and then click <strong>Kubernetes</strong>.</p>
+</li>
+</ol>
+<p>In normal cases, we can use the yaml to deploy the gateway straightly. But as we are in an internal VNET environment, we need to make some changes to the yaml before it can be deployed.</p>
+<ol start="5">
+<li>
+<p>Open the Cloud Shell. Copy and run the following command to create the secret for the gateway key in AKS first.</p>
+<p><img src="images/shgw-secret.png" alt="secret for shgw key" /></p>
+</li>
+</ol>
+<p>As we are using custom domain names and self-signed SSL certificate, the certificate needs to be trusted by the self-hosted gateway. We create a configMap to install the certificate to the gateway pod.</p>
+<blockquote>
+<p>In production environment, you would want to use more secured options, such as Pod Identity and Azure Key Vault, to manage the certificates.</p>
+</blockquote>
+<ol start="6">
+<li>
+<p>In the Cloud Shell, upload <strong>contoso-signing-root.cer</strong>.</p>
+<p><img src="images/cloud-shell-upload.png" alt="cloud shell upload" /></p>
+</li>
+<li>
+<p>Convert the CER to PEM before it can be used for the gateway pod.</p>
+<pre><code class="language-bash">openssl x509 -inform der -in contoso-signing-root.cer -out contoso-signing-root.pem
+</code></pre>
+</li>
+<li>
+<p>Create a configMap in the AKS for the certificate.</p>
+<pre><code class="language-bash">kubectl create configmap signing-root --from-file=contoso-signing-root.pem
+</code></pre>
+</li>
+</ol>
+<p>We need to make 3 changes to the yaml file generated by APIM.</p>
+<ul>
+<li>Change the <strong>config.service.endpoint</strong> to use the custom domain name of the management service endpoint.</li>
+<li>Install the certificate to the pod so that it can be trusted by the pod.</li>
+<li>Use an <a href="https://docs.microsoft.com/azure/aks/internal-lb">internal load balancer</a> to expose the gateway service.</li>
+</ul>
+<ol start="9">
+<li>
+<p>Open the editor of the Cloud Shell, and then copy and paste the content of the yaml generated by APIM to it.</p>
+<p><img src="images/cloud-shell-editor.png" alt="cloud shell editor" /></p>
+</li>
+<li>
+<p>Change the domain name of <strong>config.service.endpoint</strong> to <code>apim-mgmt.contoso.net</code>.</p>
+</li>
+<li>
+<p>Add the annotation for the internal load balancer, <code>service.beta.kubernetes.io/azure-load-balancer-internal: &quot;true&quot;</code>, to the service.</p>
+</li>
+<li>
+<p>Create a volume based on the configMap <code>signing-root</code> and mount the <code>contoso-signing-root.pem</code> from it. The complete code of the yaml is shown below.</p>
+<blockquote>
+<p>Note that you need to change the <code>&lt;subscription id&gt;</code> in <strong>config.service.endpoint</strong>.</p>
+</blockquote>
+<pre><code class="language-yml"># NOTE: Before deploying into production please review documentation -&gt; https://aka.ms/self-hosted-gateway-production
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apim-shgw-env
+data: # change to the domain name of management endpoint
+  config.service.endpoint: &quot;https://apim-mgmt.contoso.net/subscriptions/&lt;subscription id&gt;/resourceGroups/apim-rg/providers/Microsoft.ApiManagement/service/apiminst32?api-version=2019-12-01&quot;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apim-shgw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apim-shgw
+  template:
+    metadata:
+      labels:
+        app: apim-shgw
+    spec:
+      containers:
+      - name: apim-shgw
+        image: mcr.microsoft.com/azure-api-management/gateway:latest
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: https
+          containerPort: 8081
+        env:
+        - name: config.service.auth
+          valueFrom:
+            secretKeyRef:
+              name: apim-shgw-token
+              key: value
+        envFrom:
+        - configMapRef:
+            name: apim-shgw-env
+        volumeMounts: # mount the signing certificate
+        - name: signing-root-volume
+          mountPath: /etc/ssl/certs/contoso-signing-root.pem
+          subPath: contoso-signing-root.pem
+          readOnly: false
+      volumes:
+      - name: signing-root-volume
+        configMap:
+          name: signing-root
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apim-shgw
+  annotations: # use internal load balancer
+    service.beta.kubernetes.io/azure-load-balancer-internal: &quot;true&quot;
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8081
+  selector:
+    app: apim-shgw
+</code></pre>
+</li>
+<li>
+<p>Save the yaml to a file, <code>apim-shgw.yaml</code>, and run the following command to deploy it.</p>
+<pre><code class="language-bash">kubectl apply -f ./apim-shgw.yaml
+</code></pre>
+</li>
+<li>
+<p>When the self-hosted gateway is deployed successfully, you would see 1 node in the status of the self-hosted gateway in the Azure Portal.</p>
+<p><img src="images/shgw-deploy-success.png" alt="gateway deployed successfully" /></p>
+<blockquote>
+<p>In case if the deployment is completed but the node in the status keeps showing 0, you can check the log of pod with <code>kubectl logs &lt;pod-name&gt;</code> to find out what is wrong. Possible reasons could be the URL of the management endpoint is incorrect or the root certificate is not installed properly.</p>
+</blockquote>
+</li>
+</ol>
+<p>In the next tutorial, we will integrate the self-hosted gateway with the Application Gateway.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../apim/integration-appgw-apim.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../apim/integration-appgw-shgw.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../apim/integration-appgw-apim.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../apim/integration-appgw-shgw.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
