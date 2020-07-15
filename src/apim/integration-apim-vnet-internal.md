@@ -1,11 +1,13 @@
 # Connect API Management to virtual network in Internal mode
 
-In the previous tutorial, you created the virtual network, the private DNS zone and the API Management instance. In this tutorial, we continue integrating Application Gateway with API Management in the virtual network in Internal mode.
+In the previous tutorial, you created the virtual network, the private DNS zone and the API Management instance. In this tutorial, we continue connecting the API Management instance to the virtual network in Internal mode.
 
-In this tutorial, you configure:
+In this tutorial, you learn to:
 
-- The API Management instance in the virtual network in Internal mode
-- An Application Gateway integrated with the API Management instance
+- Connect the APIM instance in the virtual network in Internal mode
+- Create custom domain names in the private DNS zone
+- Create self-signed certificates with PowerShell script
+- Configure the APIM instance with custom domain names
 
 ## Connect APIM instance to the VNET in Internal mode
 
