@@ -171,12 +171,12 @@
 <p>In the Azure Portal, open Cloud Shell and choose <strong>Bash</strong> as the shell.</p>
 </li>
 <li>
-<p>Run the following command to create the service principal and note down the output.</p>
+<p>Run the following command to create the service principal and take a note on the output. We need to use it later.</p>
 <pre><code class="language-bash">az ad sp create-for-rbac --skip-assignment
 </code></pre>
 </li>
 <li>
-<p>Assign the service principal <strong>Network Contributor</strong> role to the VNET with the following command. <code>&lt;appId&gt;</code> is the value of <code>appId</code> from the output of the above command.</p>
+<p>Assign the service principal <strong>Network Contributor</strong> role to the VNET with the following command. <code>&lt;appId&gt;</code> is the value of <code>appId</code> from the output of the above step.</p>
 <pre><code class="language-bash">VNET_ID=$(az network vnet show --resource-group apim-rg --name apim-vnet --query id -o tsv)
 az role assignment create --assignee &lt;appId&gt; --scope $VNET_ID --role &quot;Network Contributor&quot;
 </code></pre>
@@ -208,7 +208,7 @@ az role assignment create --assignee &lt;appId&gt; --scope $VNET_ID --role &quot
 <p>Move to <strong>Next: Networking</strong>.</p>
 </li>
 <li>
-<p>Choose <strong>Advanced</strong> for <strong>Network configuration</strong> option and apply other settings as shown in the diagram below.</p>
+<p>Choose <strong>Advanced</strong> for <strong>Network configuration</strong> option and apply the settings as shown in the diagram below.</p>
 <p><img src="images/aks-vnet.png" alt="aks vnet" /></p>
 </li>
 <li>

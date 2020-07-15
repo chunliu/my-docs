@@ -211,7 +211,7 @@
 <p>Uncheck <strong>I want to test the backend health before adding the health probe</strong> option and click <strong>Add</strong>.</p>
 </li>
 <li>
-<p>Go to <strong>Backend health</strong>. The status of the backend should be <strong>Healthy</strong> now.</p>
+<p>Go to <strong>Backend health</strong> and refresh. The status of the backend should be <strong>Healthy</strong> now.</p>
 <p><img src="images/appgw-custom-probe-healthy.png" alt="AppGW healthy probe" /></p>
 </li>
 </ol>
@@ -222,7 +222,7 @@
 <p>In the Azure Portal, open Azure Cloud Shell. Choose <strong>Bash</strong> for the shell.</p>
 </li>
 <li>
-<p>Run the following command with <code>curl</code>. You can find the <a href="https://docs.microsoft.com/azure/api-management/api-management-subscriptions">subscription</a> key of APIM on its <strong>Subscriptions</strong> page, and the public IP address of AppGW on its <strong>Overview</strong> page.</p>
+<p>Run the following command with <code>curl</code>. You can find the <a href="https://docs.microsoft.com/azure/api-management/api-management-subscriptions">subscription</a> key of APIM on the <strong>Subscriptions</strong> page of APIM, and the public IP address of AppGW on the <strong>Overview</strong> page of AppGW.</p>
 <pre><code class="language-bash">curl -I -H &quot;Ocp-Apim-Subscription-Key: [subscription key]&quot; http://[AppGW public IP]/echo/resource
 </code></pre>
 </li>

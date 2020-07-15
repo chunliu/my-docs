@@ -163,7 +163,7 @@
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>An API Management (APIM) instance can be deployed in a virtual network (VNET) in Internal mode and then integrated with an Azure Application Gateway (AppGW) to provide access to both internal and external users. We can expand the APIM instance further with a self-hosted gateway to extend the capacity and the redundancy of the APIM.</p>
 <p>In this series of tutorials, we discuss how to integrate an AppGW with an APIM instance and a self-hosted gateway in an virtual network in internal mode. You will learn the detailed process and steps, as well as things and issues you may need to pay attention.</p>
-<p>The following diagram shows the components we will deploy in the tutorials. It is not meant to be a reference architecture of APIM, but just to show what the deployment would look like. As the purpose of the tutorials is to show the possibility and how-to for such a deployment, we start the deployment from scratch and do it step by step.</p>
+<p>The following diagram shows the components we will deploy in the tutorials. It is not meant to be a reference architecture of APIM, but just to show you what the deployment would look like. As the purpose of the tutorials is to show the possibility and how-to for such a deployment, we start the deployment from scratch and do it step by step.</p>
 <p><img src="apim/images/apim-environment.png" alt="apim environment" /></p>
 <p>The deployment can be automated with ARM template or Azure PowerShell module. We use Azure Portal in the tutorials to better illustrate the process and the steps. To keep our focus on the integration of APIM and to make it easier for illustration, we only use the built-in Echo API for testing. There is no additional backend API.</p>
 <h1><a class="header" href="#prepare-the-virtual-network-environment" id="prepare-the-virtual-network-environment">Prepare the virtual network environment</a></h1>
@@ -209,7 +209,7 @@
 </ol>
 <h2><a class="header" href="#create-the-api-management-instance" id="create-the-api-management-instance">Create the API Management instance</a></h2>
 <p>In the <strong>apim-rg</strong> resource group, create an API Management instance. For more details, please see <a href="https://docs.microsoft.com/azure/api-management/get-started-create-service-instance">Create a new Azure API Management service instance</a>.</p>
-<p>Please make sure you choose <strong>East US</strong> as the region which is the same as the virtual network, and choose either <code>Developer</code> or <code>Premium</code> as the <strong>Pricing tier</strong>. Only these two tiers support the virtual network integration.</p>
+<p>Please make sure you choose <strong>East US</strong> for the region which is the same as the virtual network, and choose either <code>Developer</code> or <code>Premium</code> for the <strong>Pricing tier</strong>. Only these two tiers support the virtual network integration.</p>
 <p>When the APIM instance is created, all steps in this tutorial are completed. Let's move to the next one.</p>
 <h1><a class="header" href="#connect-api-management-to-virtual-network-in-internal-mode" id="connect-api-management-to-virtual-network-in-internal-mode">Connect API Management to virtual network in Internal mode</a></h1>
 <p>In the previous tutorial, you created the virtual network, the private DNS zone and the API Management instance. In this tutorial, we continue connecting the API Management instance to the virtual network in Internal mode.</p>
@@ -245,17 +245,17 @@
 </ol>
 <p>For more information about the impact of the VNET Internal mode, please see <a href="https://docs.microsoft.com/azure/api-management/api-management-using-with-internal-vnet">this document</a>.</p>
 <h2><a class="header" href="#create-custom-domain-names" id="create-custom-domain-names">Create custom domain names</a></h2>
-<p>With VNET Internal mode, we need to configure the APIM instance with custom domain names before we can access its service endpoints. In our scenarios, we need at least 2 domain names, one for the <strong>Gateway</strong> and the other for the <strong>Management</strong>.</p>
+<p>With VNET Internal mode, we need to configure the APIM instance with custom domain names before we can access its service endpoints. In our scenarios, we need at least 2 domain names, one for the <strong>Gateway</strong> endpoint and the other for the <strong>Management</strong> endpoint.</p>
 <ol>
 <li>In Azure Portal, open the private DNS zone <strong>contoso.net</strong>.</li>
 <li>Click <strong>Record set</strong> to add a new record set.</li>
-<li>Create the record set with <strong>Name</strong>: <code>apim-gw</code> and <strong>IP address</strong>: <code>172.17.0.5</code>.
+<li>Create the record set with <strong>Name</strong>: <code>apim-gw</code> and <strong>IP address</strong>: <code>172.17.0.5</code> which is the private IP address we get in previous steps.
 <img src="apim/images/private-zone-recordset.png" alt="record set" /></li>
 <li>Repeat the steps to create another record set with <strong>Name</strong>: <code>apim-mgmt</code> and <strong>IP address</strong>: <code>172.17.0.5</code>.</li>
 </ol>
 <h2><a class="header" href="#create-self-signed-certificates-for-ssl" id="create-self-signed-certificates-for-ssl">Create self-signed certificates for SSL</a></h2>
 <p>We also need certificates for SSL bindings of APIM. In the production environment, you should use the certificates that are trusted by your organization. We use self-signed certificates in these tutorials just for demo purpose.</p>
-<p>To make things easier, we create 2 certificates with the following PowerShell script. One of the certificates is a root certificate for signing, and the other is a wildcard certificate for SSL bindings of the custom domain names.</p>
+<p>To make things easier, we create 2 certificates with the following PowerShell script. One of the certificates is a root certificate for signing, and the other is a wildcard certificate (CN=*.contoso.net) for SSL bindings of the custom domain names.</p>
 <pre><code class="language-PowerShell"># Create the root signing cert
 $root = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
     -Subject &quot;CN=contoso-net-signing-root&quot; -KeyExportPolicy Exportable `
@@ -296,7 +296,7 @@ Export-PfxCertificate -Cert $ssl -FilePath .\contoso-ssl.pfx `
 <p>Click <strong>Custom domains</strong> and click <strong>Add</strong>.</p>
 </li>
 <li>
-<p>Configure the custom domain for the <strong>Gateway</strong> and <strong>Management</strong> with the following values.</p>
+<p>Configure the custom domain for the <strong>Gateway</strong> and <strong>Management</strong> endpoints with the following values.</p>
 <p><img src="apim/images/apim-custom-domain.png" alt="custom domain" /></p>
 </li>
 </ol>
@@ -364,7 +364,7 @@ Export-PfxCertificate -Cert $ssl -FilePath .\contoso-ssl.pfx `
 <p>Uncheck <strong>I want to test the backend health before adding the health probe</strong> option and click <strong>Add</strong>.</p>
 </li>
 <li>
-<p>Go to <strong>Backend health</strong>. The status of the backend should be <strong>Healthy</strong> now.</p>
+<p>Go to <strong>Backend health</strong> and refresh. The status of the backend should be <strong>Healthy</strong> now.</p>
 <p><img src="apim/images/appgw-custom-probe-healthy.png" alt="AppGW healthy probe" /></p>
 </li>
 </ol>
@@ -375,7 +375,7 @@ Export-PfxCertificate -Cert $ssl -FilePath .\contoso-ssl.pfx `
 <p>In the Azure Portal, open Azure Cloud Shell. Choose <strong>Bash</strong> for the shell.</p>
 </li>
 <li>
-<p>Run the following command with <code>curl</code>. You can find the <a href="https://docs.microsoft.com/azure/api-management/api-management-subscriptions">subscription</a> key of APIM on its <strong>Subscriptions</strong> page, and the public IP address of AppGW on its <strong>Overview</strong> page.</p>
+<p>Run the following command with <code>curl</code>. You can find the <a href="https://docs.microsoft.com/azure/api-management/api-management-subscriptions">subscription</a> key of APIM on the <strong>Subscriptions</strong> page of APIM, and the public IP address of AppGW on the <strong>Overview</strong> page of AppGW.</p>
 <pre><code class="language-bash">curl -I -H &quot;Ocp-Apim-Subscription-Key: [subscription key]&quot; http://[AppGW public IP]/echo/resource
 </code></pre>
 </li>
@@ -400,12 +400,12 @@ Export-PfxCertificate -Cert $ssl -FilePath .\contoso-ssl.pfx `
 <p>In the Azure Portal, open Cloud Shell and choose <strong>Bash</strong> as the shell.</p>
 </li>
 <li>
-<p>Run the following command to create the service principal and note down the output.</p>
+<p>Run the following command to create the service principal and take a note on the output. We need to use it later.</p>
 <pre><code class="language-bash">az ad sp create-for-rbac --skip-assignment
 </code></pre>
 </li>
 <li>
-<p>Assign the service principal <strong>Network Contributor</strong> role to the VNET with the following command. <code>&lt;appId&gt;</code> is the value of <code>appId</code> from the output of the above command.</p>
+<p>Assign the service principal <strong>Network Contributor</strong> role to the VNET with the following command. <code>&lt;appId&gt;</code> is the value of <code>appId</code> from the output of the above step.</p>
 <pre><code class="language-bash">VNET_ID=$(az network vnet show --resource-group apim-rg --name apim-vnet --query id -o tsv)
 az role assignment create --assignee &lt;appId&gt; --scope $VNET_ID --role &quot;Network Contributor&quot;
 </code></pre>
@@ -437,7 +437,7 @@ az role assignment create --assignee &lt;appId&gt; --scope $VNET_ID --role &quot
 <p>Move to <strong>Next: Networking</strong>.</p>
 </li>
 <li>
-<p>Choose <strong>Advanced</strong> for <strong>Network configuration</strong> option and apply other settings as shown in the diagram below.</p>
+<p>Choose <strong>Advanced</strong> for <strong>Network configuration</strong> option and apply the settings as shown in the diagram below.</p>
 <p><img src="apim/images/aks-vnet.png" alt="aks vnet" /></p>
 </li>
 <li>

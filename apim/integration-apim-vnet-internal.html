@@ -189,17 +189,17 @@
 </ol>
 <p>For more information about the impact of the VNET Internal mode, please see <a href="https://docs.microsoft.com/azure/api-management/api-management-using-with-internal-vnet">this document</a>.</p>
 <h2><a class="header" href="#create-custom-domain-names" id="create-custom-domain-names">Create custom domain names</a></h2>
-<p>With VNET Internal mode, we need to configure the APIM instance with custom domain names before we can access its service endpoints. In our scenarios, we need at least 2 domain names, one for the <strong>Gateway</strong> and the other for the <strong>Management</strong>.</p>
+<p>With VNET Internal mode, we need to configure the APIM instance with custom domain names before we can access its service endpoints. In our scenarios, we need at least 2 domain names, one for the <strong>Gateway</strong> endpoint and the other for the <strong>Management</strong> endpoint.</p>
 <ol>
 <li>In Azure Portal, open the private DNS zone <strong>contoso.net</strong>.</li>
 <li>Click <strong>Record set</strong> to add a new record set.</li>
-<li>Create the record set with <strong>Name</strong>: <code>apim-gw</code> and <strong>IP address</strong>: <code>172.17.0.5</code>.
+<li>Create the record set with <strong>Name</strong>: <code>apim-gw</code> and <strong>IP address</strong>: <code>172.17.0.5</code> which is the private IP address we get in previous steps.
 <img src="images/private-zone-recordset.png" alt="record set" /></li>
 <li>Repeat the steps to create another record set with <strong>Name</strong>: <code>apim-mgmt</code> and <strong>IP address</strong>: <code>172.17.0.5</code>.</li>
 </ol>
 <h2><a class="header" href="#create-self-signed-certificates-for-ssl" id="create-self-signed-certificates-for-ssl">Create self-signed certificates for SSL</a></h2>
 <p>We also need certificates for SSL bindings of APIM. In the production environment, you should use the certificates that are trusted by your organization. We use self-signed certificates in these tutorials just for demo purpose.</p>
-<p>To make things easier, we create 2 certificates with the following PowerShell script. One of the certificates is a root certificate for signing, and the other is a wildcard certificate for SSL bindings of the custom domain names.</p>
+<p>To make things easier, we create 2 certificates with the following PowerShell script. One of the certificates is a root certificate for signing, and the other is a wildcard certificate (CN=*.contoso.net) for SSL bindings of the custom domain names.</p>
 <pre><code class="language-PowerShell"># Create the root signing cert
 $root = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
     -Subject &quot;CN=contoso-net-signing-root&quot; -KeyExportPolicy Exportable `
@@ -240,7 +240,7 @@ Export-PfxCertificate -Cert $ssl -FilePath .\contoso-ssl.pfx `
 <p>Click <strong>Custom domains</strong> and click <strong>Add</strong>.</p>
 </li>
 <li>
-<p>Configure the custom domain for the <strong>Gateway</strong> and <strong>Management</strong> with the following values.</p>
+<p>Configure the custom domain for the <strong>Gateway</strong> and <strong>Management</strong> endpoints with the following values.</p>
 <p><img src="images/apim-custom-domain.png" alt="custom domain" /></p>
 </li>
 </ol>
