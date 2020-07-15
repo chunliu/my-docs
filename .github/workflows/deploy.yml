@@ -1,10 +1,9 @@
-name: Rust
+name: Push to gh-pages
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags: 
+      - v*
 
 env:
   CARGO_TERM_COLOR: always
