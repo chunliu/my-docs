@@ -8,3 +8,4 @@
   - [Deploy self-hosted gateway](apim/integration-deploy-shgw.md)
   - [Integrate AppGW with self-hosted gateway](apim/integration-appgw-shgw.md)
   - [Verify the deployment](apim/integration-verification.md)
+- [Spring Boot, MySQL and Azure App Service](appservice/spring-boot-mysql.md)
