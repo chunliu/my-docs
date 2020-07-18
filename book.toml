@@ -8,6 +8,8 @@ description = "Azure related posts"
 
 [output.html]
 git-repository-url = "https://github.com/chunliu/my-docs"
+no-section-label = true
+default-theme = "Ayu"
 
 [output.html.fold]
 enable = true
