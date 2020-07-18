@@ -1,0 +1,701 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Spring Boot, MySQL and Azure App Service - Azure Scrolls</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Azure related posts">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../About.html">About</a></li><li class="chapter-item "><a href="../apim/integration-overview.html"><strong aria-hidden="true">1.</strong> Tutorials - Integrate App Gateway, APIM and Self-Hosted Gateway</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../apim/integration-prepare-environment.html"><strong aria-hidden="true">1.1.</strong> Prepare the VNET environment</a></li><li class="chapter-item "><a href="../apim/integration-apim-vnet-internal.html"><strong aria-hidden="true">1.2.</strong> Connect APIM to internal VNET</a></li><li class="chapter-item "><a href="../apim/integration-appgw-apim.html"><strong aria-hidden="true">1.3.</strong> Integrate APIM with AppGW</a></li><li class="chapter-item "><a href="../apim/integration-deploy-shgw.html"><strong aria-hidden="true">1.4.</strong> Deploy self-hosted gateway</a></li><li class="chapter-item "><a href="../apim/integration-appgw-shgw.html"><strong aria-hidden="true">1.5.</strong> Integrate AppGW with self-hosted gateway</a></li><li class="chapter-item "><a href="../apim/integration-verification.html"><strong aria-hidden="true">1.6.</strong> Verify the deployment</a></li></ol></li><li class="chapter-item expanded "><a href="../appservice/spring-boot-mysql.html" class="active"><strong aria-hidden="true">2.</strong> Spring Boot, MySQL and Azure App Service</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Azure Scrolls</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/chunliu/my-docs" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#spring-boot-mysql-and-azure-app-service---what-azure-would-look-like-for-java-developers" id="spring-boot-mysql-and-azure-app-service---what-azure-would-look-like-for-java-developers">Spring Boot, MySQL and Azure App Service - What Azure would look like for Java developers</a></h1>
+<p>📅 2/7/2019</p>
+<blockquote>
+<p>This is the lab content that I created for a session that I delivered in the Microsoft Ready 2019 in Seattle.</p>
+</blockquote>
+<p>This technical lab is designed for you to experience building Java applications, deploying and running them on Azure. It consists of several exercises which are step by step tutorials that you can follow easily. The lab is focused on <strong>developing</strong> Java applications with Microsoft tools such as Visual Studio Code, <strong>deploying</strong> the applications to App Service on Linux, and <strong>implementing</strong> Continuous Integration/Continuous Delivery (CI/CD) with Azure Pipelines. </p>
+<h2><a class="header" href="#objectives" id="objectives">Objectives</a></h2>
+<p>As a result of working through this lab, you will</p>
+<ul>
+<li>get real experience in developing Java applications with VSCode, Azure DevOps and App Service.</li>
+<li>be better able to articulate the Azure DevOps CI/CD experience for Java applications.</li>
+<li>be better able to understand the basics of Spring Boot framework and MySQL database.</li>
+</ul>
+<h2><a class="header" href="#exercise-0---familiar-with-the-lab-environment" id="exercise-0---familiar-with-the-lab-environment">Exercise 0 - Familiar with the lab environment</a></h2>
+<p>In this exercise, we will check the environment settings on the lab machine to make sure it is ready for the lab. After completing the exercise, you will know the basic environment settings which are required for the Java development on Windows.</p>
+<h3><a class="header" href="#01---java-settings" id="01---java-settings">0.1 - Java settings</a></h3>
+<p>In this lab, we will use <a href="https://openjdk.java.net/">OpenJDK</a> and <a href="https://maven.apache.org/what-is-maven.html">Maven</a> to develop and build Java applications. Both of these two components have been installed and configured on the lab machine. You can follow the steps below to check the settings to make sure they are working.</p>
+<ol>
+<li>
+<p>On the lab machine, click the <strong>Command Prompt</strong> icon on Windows task bar to launch the Command Prompt.</p>
+</li>
+<li>
+<p>In the Command Prompt window, run command <code>java --version</code> followed by <code>mvn --version</code>.</p>
+</li>
+<li>
+<p>The output in the Command Prompt should look like the following screenshot.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex0/java-settings.png" alt="Java settings" /></p>
+</li>
+</ol>
+<p>If you can see the similar output as shown in the above screenshot, the Java settings are correct.</p>
+<h3><a class="header" href="#02---local-mysql-instance" id="02---local-mysql-instance">0.2 - Local MySQL instance</a></h3>
+<p>On the lab machine, MySQL is installed and a local instance is configured. We will use it as the local database engine for testing purpose when we develop Java applications. Please follow the steps below to verify the local instance of MySQL is working.</p>
+<ol>
+<li>
+<p>On the lab machine, click the <strong>MySQL Workbench</strong> icon <img src="https://readylab.z19.web.core.windows.net/images/ex0/mysql-wb-icon.png" alt="MySQL Workbench icon" /> on Windows task bar to launch it.</p>
+</li>
+<li>
+<p>In the window of MySQL Workbench, click <strong>Local instance MySQL80</strong>, as shown in the screenshot below, input the password <code>P@ssw0rd1</code> and click <strong>OK</strong> button.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex0/mysql-wb-connect.png" alt="MySQL Workbench connection" /></p>
+</li>
+<li>
+<p>If the local MySQL instance is working well, the Workbench should connect to it successfully, and you should see the Server Status as <strong>Running</strong> when you click the <strong>Server Status</strong> on the left Navigator.</p>
+</li>
+<li>
+<p>Let's create a new database that we will use in the later exercises. In the <strong>Query 1</strong> window, run the following T-SQL to create a new database.</p>
+<pre><code class="language-sql">create database tododb;
+</code></pre>
+</li>
+<li>
+<p>Close MySQL Workbench after you finish the exercise.</p>
+</li>
+</ol>
+<h3><a class="header" href="#03---azure-database-for-mysql" id="03---azure-database-for-mysql">0.3 - Azure Database for MySQL</a></h3>
+<p>In this lab, we will use Azure Database for MySQL as our database engine. There is an Azure Database for MySQL instance in your Azure subscription. We need to prepare the database on it for our code. </p>
+<ol>
+<li>
+<p>Open browser and explore <a href="https://portal.azure.com">https://portal.azure.com</a>, sign in with the Azure account provided. </p>
+</li>
+<li>
+<p>Click <strong>Resource groups &gt; <em>[the name of the resource group]</em></strong>. You will see 4 resources which look similar to the following screenshot.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex0/azure-resources.png" alt="Azure Resources" /></p>
+</li>
+<li>
+<p>Click the name of Azure Database for MySQL server to view its details. </p>
+</li>
+<li>
+<p>Click Cloud Shell button <img src="https://readylab.z19.web.core.windows.net/images/ex0/cloud-shell.png" alt="Cloud Shell" /> to open the cloud shell. Select <strong>Bash</strong> as the shell environment. </p>
+<blockquote>
+<p>[!NOTE]
+You might have to initialize the Cloud Shell and configure the storage account that it needs to use. If prompt, choose <strong>Show advanced settings</strong>, and then choose to use <strong>existing</strong> resource group and storage account, and create a new file share. See screenshot below as a reference. 
+<img src="https://readylab.z19.web.core.windows.net/images/ex0/cloud-shell-init.png" alt="Initialize cloud shell" /></p>
+</blockquote>
+</li>
+<li>
+<p>In cloud shell window, connect to MySQL server with the following command: </p>
+<pre><code class="language-console">mysql --host [mysql server name].mysql.database.azure.com --user dbadmin@[mysql server name] -p
+</code></pre>
+<p>You can find <em>[mysql server name]</em> from the <strong>Overview</strong> page of your Azure MySQL instance. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex0/mysql-signin.png" alt="MySQL sign in" /></p>
+</li>
+<li>
+<p>When prompt, type the password <code>P@ssw0rd1</code>. </p>
+</li>
+<li>
+<p>When you connect to MySQL server successfully, type the following command to view all existing databases. </p>
+<pre><code class="language-sql">show databases;
+</code></pre>
+</li>
+<li>
+<p>Type the following SQL script to prepare for the database that we will use in our code later. </p>
+<pre><code class="language-sql">CREATE DATABASE tododb;
+CREATE USER 'springuser'@'%' IDENTIFIED BY 'Spring1234';
+GRANT ALL PRIVILEGES ON tododb.* TO 'springuser'@'%';
+FLUSH PRIVILEGES;
+</code></pre>
+</li>
+<li>
+<p>After running the above script, if you run <code>show databases;</code> again, you will see a new database created. </p>
+</li>
+<li>
+<p>Type <code>quit;</code> to close the connection, and then close the cloud shell window. </p>
+</li>
+<li>
+<p>Click <strong>Connection security</strong> of Azure MySQL instance, turn on <strong>Allow access to Azure services</strong> and click <strong>Save</strong>. See screenshot below. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex0/mysql-conn-sec.png" alt="Connection security" /></p>
+</li>
+</ol>
+<h3><a class="header" href="#04---extensions-of-visual-studio-code" id="04---extensions-of-visual-studio-code">0.4 - Extensions of Visual Studio Code</a></h3>
+<p>In this lab, we will use <a href="https://code.visualstudio.com/docs">Visual Studio Code</a> as our development environment for Java applications. The Java language support in Visual Studio Code is provided through a set of extensions. You can view these extensions in Visual Studio Code. For more information about using Java in VS Code, please see <a href="https://code.visualstudio.com/docs/languages/java">Java in Visual Studio Code</a>.</p>
+<ol>
+<li>Open VSCode by clicking its icon <img src="https://readylab.z19.web.core.windows.net/images/ex0/vscode-icon.png" alt="vscode icon" /> on Windows task bar.</li>
+<li>Open the extensions panel by clicking its icon or press <code>Ctrl+Shift+X</code>. You should see all extensions that are required by this lab.</li>
+</ol>
+<h2><a class="header" href="#exercise-1---build-a-sprint-boot-web-app-in-vs-code" id="exercise-1---build-a-sprint-boot-web-app-in-vs-code">Exercise 1 - Build a Sprint Boot web app in VS Code</a></h2>
+<p>In this exercise, we will create a Sprint Boot project with VS Code from scratch. We will also run the code and debug it in VS Code. After completing the exercise, you will better understand the developer experience that VS Code provides to Java developers. </p>
+<h3><a class="header" href="#11---create-a-sprint-boot-project-in-vs-code" id="11---create-a-sprint-boot-project-in-vs-code">1.1 - Create a Sprint Boot project in VS Code</a></h3>
+<p>Please follow the steps below to create a Sprint Boot project in VS Code from scratch.</p>
+<ol>
+<li>
+<p>Open VS Code. If there is any folder opened in VS Code, close it by clicking <strong>File &gt; Close Folder</strong> or pressing <code>Ctrl+K F</code>.</p>
+</li>
+<li>
+<p>In VS Code, open Command Palette by clicking <strong>View &gt; Command Palette</strong> or pressing <code>Ctrl+Shift+P</code>.</p>
+</li>
+<li>
+<p>In Command Palette, input <code>Spring</code> and then select <strong>Spring Initializr: Generate a Maven Project</strong>. See screenshot below for a reference.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex1/create-project-1.png" alt="Spring Initializr" /></p>
+</li>
+<li>
+<p>Follow the steps of Spring Initializr wizard with the following values.</p>
+<p>|Properties  |Value           |
+|------------|----------------|
+|Language    |Java            |
+|Group Id    |com.azurelabs   |
+|Artifact Id |hellospringboot |
+|Version     |2.1.1           |</p>
+</li>
+<li>
+<p>For dependencies, select <strong>DevTools</strong> and <strong>Web</strong>. See screenshot below.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex1/create-project-2.png" alt="Select dependencies" /></p>
+</li>
+<li>
+<p>In the Select Folder window, select <code>C:\Code</code> as the folder and click <strong>Generate into this folder</strong> button.</p>
+</li>
+<li>
+<p>Once the project is generated, click <strong>Open</strong> button on the popup in VS Code to open the folder in VS Code.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex1/create-project-3.png" alt="Popup" /></p>
+</li>
+</ol>
+<p>By following the Spring Initializr wizard, a Spring Boot project is created. This is an empty project. It provides us a project structure based on which we can build our applications. The folder structure of the project is the typical structure of Maven projects.</p>
+<h3><a class="header" href="#12---implement-a-web-controller" id="12---implement-a-web-controller">1.2 - Implement a web controller</a></h3>
+<p>Let's add a simple web controller to handle the web request. </p>
+<ol>
+<li>
+<p>In VS Code, create a new file, <code>HelloController.java</code>, in the folder <strong>src/main/java/com/azurelabs/hellospringboot</strong>.</p>
+</li>
+<li>
+<p>In this new file, write the following code: </p>
+<blockquote>
+<p>[!NOTE]
+Type the code to try the Java coding experience in VS Code. </p>
+</blockquote>
+<pre><code class="language-java">package com.azurelabs.hellospringboot;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @RequestMapping(&quot;/&quot;)
+    public String Index() {
+        return &quot;Hello, Spring Boot!&quot;;
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>With the above code, we have a simple web controller that can handle the request. To test the application locally, open the Terminal in VS Code by clicking <strong>View &gt; Terminal</strong> or pressing <code>Ctrl+` </code>.</p>
+</li>
+<li>
+<p>In the Terminal, run command <code>.\mvnw spring-boot:run</code>. This command will compile the code and run it. </p>
+</li>
+<li>
+<p>When the project is running successfully, you will see the output in the Terminal which is similar as <em>Started DemoApplication in 11.869 seconds (JVM running for 13.251)</em>. </p>
+</li>
+<li>
+<p>Open a browser and visit <code>http://localhost:8080</code>. You should see a simple page as shown in the screenshot below. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex1/browser-simplepage.png" alt="Hello, Spring Boot" /></p>
+</li>
+<li>
+<p>Close the browser, and stop the application by pressing <code>Ctrl+C</code> in Terminal. </p>
+</li>
+</ol>
+<h3><a class="header" href="#13---debug-the-java-code-in-vs-code" id="13---debug-the-java-code-in-vs-code">1.3 - Debug the Java code in VS Code</a></h3>
+<p>To debug the Java application locally in VS Code, we need to configure the <code>launch.json</code>. Fortunately, VS Code has made it very easy for us to configure it. </p>
+<ol>
+<li>
+<p>In VS Code, click Debug icon on the left navigation or press <code>Ctrl+Shift+D</code> to open the Debug Panel. </p>
+</li>
+<li>
+<p>Click the <strong>Configure</strong> button to generate a launch.json file. See screenshot below for details. VS Code helps us generate the launch.json automatically based on the project settings.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex1/debug-configure.png" alt="Configure debug" /></p>
+</li>
+<li>
+<p>Open <code>HelloController.java</code> and set a breakpoint on the code, <code>return &quot;Hello, Spring Boot!&quot;;</code>. </p>
+</li>
+<li>
+<p>Press <code>F5</code> or click <strong>Start Debugging</strong> button on the Debug Panel. </p>
+</li>
+<li>
+<p>When the application is running, open a browser and visit <code>http://localhost:8080</code>. The breakpoint should be hit, as shown in the screenshot below. Press <code>F5</code> or click <strong>Continue</strong> and you will see the page in the browser. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex1/debug-bp.png" alt="Hit breakpoint" /></p>
+</li>
+<li>
+<p>Stop the debugging by clicking <strong>Stop</strong> button or pressing <code>Shift+F5</code>. </p>
+</li>
+</ol>
+<p>Close VS Code and browser window after you complete the exercise. </p>
+<h2><a class="header" href="#exercise-2---run-a-spring-boot-web-app-on-azure" id="exercise-2---run-a-spring-boot-web-app-on-azure">Exercise 2 - Run a Spring Boot web app on Azure</a></h2>
+<p>In this exercise, let's switch the gear and create a simple web app with Spring Boot and MySQL, and then publish it to an Azure website. For the sake of time, let's get the completed code from the GitHub repository. </p>
+<h3><a class="header" href="#21---clone-the-github-repository-and-build-the-project-locally" id="21---clone-the-github-repository-and-build-the-project-locally">2.1 - Clone the GitHub repository and build the project locally</a></h3>
+<p>To clone the project, follow the steps below. </p>
+<ol>
+<li>
+<p>In the lab machine, launch the <strong>Command Prompt</strong>. Switch the work directory to <strong>C:\Code</strong> by typing the command: <code>cd C:\Code</code>.</p>
+</li>
+<li>
+<p>Clone the repository with the command: <code>git clone https://github.com/chunliu/todowebjava.git</code>. When the clone completes, the output in the Command Prompt looks like the following screenshot, and a new folder, <strong>todowebjava</strong>, is created in C:\Code.</p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex2/clone.png" alt="Clone the repository" /></p>
+</li>
+<li>
+<p>In the Command Prompt, type <code>cd todowebjava</code> to go into the folder, and then type <code>code .</code> to open the folder in VS Code. </p>
+</li>
+<li>
+<p>Explore the project structure and the Java code in the folder <strong>src/main/java/com/azurelabs/todowebjava</strong>. This project uses <a href="https://spring.io/projects/spring-data-jpa">Spring Data JPA</a> to read and persist data to MySQL database. </p>
+</li>
+<li>
+<p>Let's configure the database connection in the project before we run it. Open <strong>application.properties</strong> file in <strong>src/main/resources</strong> folder. </p>
+</li>
+<li>
+<p>Replace the following values in the application.properties file according to the table below, and save the changes. <strong>Don't change other settings in this file</strong>. </p>
+<p>|Property Name |Old Value |New Value |
+|---------|---------|---------|
+|spring.datasource.url |${SPRING_DATASOURCE_URL} |jdbc:mysql://localhost:3306/tododb?serverTimezone=UTC |
+|spring.datasource.username |${SPRING_DATASOURCE_USERNAME} |root |
+|spring.datasource.password |${SPRING_DATASOURCE_PASSWORD} |P@ssw0rd1 |
+|server.port |${PORT} |80 |</p>
+</li>
+<li>
+<p>Now we can test if it works. In VS Code, press <code>F5</code> to launch the web app. When it is launched successfully, open a browser and explore <code>http://localhost</code>. You should see the home page of the todo web app.</p>
+</li>
+<li>
+<p>Let's create a new todo item in the web app. In the browser window, click <strong>Todo</strong> on the left navigation, and then click <strong>New Task</strong>. </p>
+</li>
+<li>
+<p>In the pop up, input a name for the task, for example, <code>A new task</code>, and click <strong>OK</strong>. A new task should be created accordingly. </p>
+</li>
+<li>
+<p>To verify if the data has been persisted in the database, you can open the MySQL Workbench, connect to the MySQL instance, and run the following query. You should see 1 record in the database. </p>
+<pre><code class="language-sql">use tododb;
+select * from todo_item;
+</code></pre>
+</li>
+</ol>
+<h3><a class="header" href="#22---publish-the-web-app-to-azure-app-service" id="22---publish-the-web-app-to-azure-app-service">2.2 - Publish the web app to Azure App Service</a></h3>
+<p>Follow the steps below to update the code and publish the web app to the Azure App Service. </p>
+<ol>
+<li>
+<p>In VS Code, open <strong>application.properties</strong> file in <strong>src/main/resources</strong> folder.</p>
+</li>
+<li>
+<p>Instead of hard-coding the database connection string, we want to configure it via the Application Settings of Azure Web App. So discard the changes you made in section 2.1. The code of application.properties should look like the following which is the same as what you pulled from GitHub first time. </p>
+<pre><code class="language-java">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57InnoDBDialect
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+server.port=${PORT}
+</code></pre>
+</li>
+<li>
+<p>In the Terminal window, run command, <code>mvn clean package -DskipTests</code>, to package the code. </p>
+</li>
+<li>
+<p>Find the package <strong>todowebjava-0.0.1-SNAPSHOT.jar</strong> in <strong>target</strong> folder. Right click and rename it to <strong>app.jar</strong>. </p>
+</li>
+<li>
+<p>In VS Code, click <strong>Azure</strong> icon on the left navigation to open App Service explorer, and then click <strong>Sign in to Azure</strong>. </p>
+</li>
+<li>
+<p>Click <strong>Copy &amp; Open</strong> in the popup window. See screenshot below. A browser window will be opened. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex2/azure-signin.png" alt="Azure Sign In" /></p>
+</li>
+<li>
+<p>In the browser window, right click in the <strong>Code</strong> input, select <strong>Paste</strong> to paste the device code, and click <strong>Continue</strong> button. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex2/azure-device-code.png" alt="Device code" /></p>
+</li>
+<li>
+<p>Sign in with the Azure account.</p>
+</li>
+<li>
+<p>When you sign in successfully and see the following screen, close the browser window and go back to VS Code. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex2/azure-signin-complete.png" alt="Azure sign in complete" /></p>
+</li>
+<li>
+<p>In <strong>Azure App Service</strong> explorer, expand the corresponding subscription and locate the Azure Web App. See screenshot below. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex2/azure-appsvc.png" alt="App service explorer" /></p>
+</li>
+<li>
+<p>Right click <strong>Application Settings</strong> and click <strong>Add New Setting</strong>. Follow the instruction to add the following application settings. Alternatively you can also add these settings in Azure Portal. </p>
+<p>|Name                       |Value    |
+|---------------------------|---------|
+|SPRING_DATASOURCE_URL      |jdbc:mysql://<em>[mysql server name]</em>.mysql.database.azure.com:3306/tododb?useSSL=true&amp;serverTimezone=UTC |
+|SPRING_DATASOURCE_USERNAME |springuser@<em>[mysql server name]</em> |
+|SPRING_DATASOURCE_PASSWORD |Spring1234                       |
+|PORT                       |80                               |</p>
+<p>Replace <em><strong>[mysql server name]</strong></em> with your MySQL server name. For details about how to find <em><strong>[mysql server name]</strong></em>, please refer to <a href="#03---azure-database-for-mysql">Section 0.3</a>.</p>
+</li>
+<li>
+<p>In VS Code, switch to workspace Explorer by clicking the <strong>Explorer</strong> button on the left navigation or press <code>Ctrl+Shift+E</code>. </p>
+</li>
+<li>
+<p>Right click on <strong>app.jar</strong> and click <strong>Deploy to Web App</strong>. </p>
+</li>
+<li>
+<p>Follow the instruction to choose the Azure subscription, and the existing Web App. In this lab, we <strong>don't</strong> use <em>Create New Web App</em> option. </p>
+</li>
+<li>
+<p>In the popup dialog box, click <strong>Deploy</strong> button. The deployment process will be kicked off. You can open the Output window to see its progress. </p>
+</li>
+<li>
+<p>When you see the following popup, the deployment completes successfully. Click <strong>Browse Website</strong> button to browse the website. </p>
+<blockquote>
+<p>[!NOTE]
+You may have to restart the website in Azure Portal and wait for several minutes before you can see the home page of the website.</p>
+</blockquote>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex2/azure-deploy-success.png" alt="Deploy success" /></p>
+</li>
+<li>
+<p>To verify if the site works properly, you can create a new task on the Todo page. Furthermore, you can use MySQL Workbench to connect to the MySQL server and query if the task you created is in the database.</p>
+</li>
+</ol>
+<h2><a class="header" href="#exercise-3---implement-cicd-with-azure-devops" id="exercise-3---implement-cicd-with-azure-devops">Exercise 3 - Implement CI/CD with Azure DevOps</a></h2>
+<p>In this exercise, we will implement CI/CD for our Spring Boot project with Azure DevOps pipelines. </p>
+<h3><a class="header" href="#31---create-an-azure-devops-organization" id="31---create-an-azure-devops-organization">3.1 - Create an Azure DevOps organization</a></h3>
+<p>Follow the steps below to create an Azure DevOps organization. We will use it to create CI/CD pipelines.</p>
+<ol>
+<li>
+<p>Open browser and explore to <a href="https://dev.azure.com">https://dev.azure.com</a>. </p>
+</li>
+<li>
+<p>Sign in with the provided Azure account. </p>
+</li>
+<li>
+<p>After signing in successfully, click <strong>Start free</strong> button on the Azure DevOps page, and then follow the wizard to create the organization.</p>
+</li>
+<li>
+<p>When the organization is ready, create an Azure DevOps project by providing a project name, for example, <em><strong>todowebjava</strong></em>, and clicking <strong>Create project</strong> button. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/create-proj.png" alt="Create project" /></p>
+</li>
+</ol>
+<h3><a class="header" href="#32---push-the-code-repository-to-azure-devops-repos" id="32---push-the-code-repository-to-azure-devops-repos">3.2 - Push the code repository to Azure DevOps Repos</a></h3>
+<p>Azure Pipelines support multiple source repositories, such as GitHub, Bitbucket etc. In our lab, we will use Azure Repos as the source repository. We need to push our source code from the local machine to Azure Repos. </p>
+<ol>
+<li>
+<p>Update the URL of the <strong>origin</strong> branch of Git to Azure Repos' URL with the following command: </p>
+<pre><code class="language-console">git remote set-url origin [Azure Repos URL]
+</code></pre>
+<p>To get the <em>[Azure Repos URL]</em>, on the Azure DevOps project page, click <strong>Repos &gt; Files</strong>. You will see <em><strong>push an existing repository from command line</strong></em> option. Copy the URL from there. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/origin-url.png" alt="Origin URL" /></p>
+</li>
+<li>
+<p>Then push the repository to Azure Repos with command: <code>git push -u origin --all</code>. When prompt, sign in with the Azure account provided with the lab. </p>
+</li>
+<li>
+<p>Once the repository is pushed successfully, you will be able to see the code in Azure DevOps. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/azure-repos-code.png" alt="Azure Repos" /></p>
+</li>
+</ol>
+<h3><a class="header" href="#33---create-the-build-pipeline" id="33---create-the-build-pipeline">3.3 - Create the build pipeline</a></h3>
+<p>When the source code is in Azure Repos, we can create a build pipeline to build the code. Azure Pipelines support two ways to create a build pipeline, YAML pipeline and Visual Designer. For the sake of time, we will use the Visual Designer in this lab. You can try YAML pipeline by yourself later. </p>
+<ol>
+<li>
+<p>On Azure DevOps project page, click <strong>Pipelines &gt; Builds</strong>, and then click <strong>New pipeline</strong> button. </p>
+</li>
+<li>
+<p>On the <strong>New pipeline</strong> page, click <strong>Use the visual designer</strong> link to switch to the visual designer. </p>
+</li>
+<li>
+<p>Select <strong>Azure Repos Git</strong> as the source, and choose the corresponding project repository, then click <strong>Continue</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Choose a template</strong> page, choose <strong>Maven</strong> as the template. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/maven-template.png" alt="maven" /></p>
+</li>
+<li>
+<p>When the build pipeline is created based on the Maven template, you don't even need to make any change. Azure Pipelines understand the Maven project and the default configurations are good enough for our lab. Go ahead to click <strong>Save &amp; queue</strong> to queue a new build.</p>
+</li>
+<li>
+<p>When the build is kicked off, you can monitor the build status. When the build completes successfully, click <strong>Summary</strong> and <strong>Tests</strong> tabs to view the results. </p>
+</li>
+</ol>
+<h3><a class="header" href="#34---create-the-release" id="34---create-the-release">3.4 - Create the release</a></h3>
+<p>Follow the steps below to create the release pipeline. </p>
+<ol>
+<li>
+<p>On Azure DevOps project page, click <strong>Pipeline &gt; Releases</strong>, and then click <strong>New pipeline</strong> button. </p>
+</li>
+<li>
+<p>On the <strong>New release pipeline</strong> page, select <strong>Deploy a Java app to Azure App Service</strong> template. </p>
+</li>
+<li>
+<p>Click <strong>Add an artifact</strong>, choose the build pipeline that you create in the previous exercise, choose <strong>Latest</strong> for <strong>Default version</strong>, and then click <strong>Add</strong>. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/release-artifact.png" alt="add artifact" /></p>
+</li>
+<li>
+<p>Click <strong>1 job, 2 tasks</strong> link on <strong>Stage 1</strong> box. </p>
+</li>
+<li>
+<p>We need to configure an Azure connection for the deployment. Click the <strong>Manage</strong> link besides <strong>Azure subscription</strong>. It will open the Azure connection settings page.</p>
+</li>
+<li>
+<p>On the new page, click <strong>New service connection</strong> dropdown and click <strong>Azure Resource Manager</strong>. </p>
+</li>
+<li>
+<p>On the popup window, input a <strong>Connection name</strong>, such as <em>Java Web App</em>, and choose the corresponding resource group from the dropdown, and then click <strong>OK</strong>. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/azure-connection.png" alt="Azure Connection" /></p>
+</li>
+<li>
+<p>When the Azure connection is created successfully, go back to the <strong>New release pipeline</strong> page. Now you should be able to see the Azure connection you created in the <strong>Azure subscription</strong> dropdown list. If not, please click the refresh button besides the dropdown list and try again. Choose the Azure connection from the dropdown list. </p>
+</li>
+<li>
+<p>For <strong>App type</strong>, choose <strong>Web App on Linux</strong>. And choose the corresponding Azure web app as <strong>App service name</strong>. See screenshot below as a reference. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/release-stage.png" alt="Release stage" /></p>
+</li>
+<li>
+<p>As in our code we build a jar file rather than a war file, we will use <strong>Deploy Jar to Azure App Service</strong> task rather than <strong>Deploy War to Azure App Service</strong> task. So right click on <strong>Deploy War to Azure App Service</strong> and disable it, and right click on <strong>Deploy Jar to Azure App Service</strong> to enable it. </p>
+</li>
+<li>
+<p>The most of the configurations for <strong>Deploy Jar to Azure App Service</strong> should have been generated. As in our code there is only one jar file, we can choose it specifically. Click the <strong>...</strong> button besides <strong>Package or folder</strong> option and locate the <strong>todowebjava-0.0.1-SNAPSHOT.jar</strong> file as shown in the screenshot below. </p>
+<p><img src="https://readylab.z19.web.core.windows.net/images/ex3/locate-jar.png" alt="Locate Jar" /></p>
+</li>
+<li>
+<p>With the above settings, we finish the configuration of the release pipeline. Click the <strong>Save</strong> button, and then <strong>Release &gt; Create a release</strong> to test the release pipeline. </p>
+</li>
+<li>
+<p>On the <strong>Create a new release</strong> page, select <strong>Stage 1</strong> from the dropdown list and click <strong>Create</strong> button. </p>
+</li>
+<li>
+<p>Click the new release created and then click <strong>Deploy</strong> button to kick start the deployment. You can click the stage box to open the console and monitor the progress of the deployment. </p>
+</li>
+<li>
+<p>When the deployment completes successfully, explore the website in the browser. </p>
+</li>
+</ol>
+<h3><a class="header" href="#35---clean-up-the-azure-devops-organization" id="35---clean-up-the-azure-devops-organization">3.5 - Clean up the Azure DevOps organization</a></h3>
+<p>After you complete all exercises, please follow the steps below to clean up the Azure DevOps organization so that the Azure account of the lab can be reused. </p>
+<ol>
+<li>On Azure DevOps project page, click <strong>Azure DevOps</strong> logo at the upper left corner, and then click <strong>Organization settings</strong> at the lower left corner.</li>
+<li>Click <strong>Overview</strong> under <strong>Organization Settings &gt; General</strong>. Scroll down and then click <strong>Delete</strong> button under <strong>Delete organization</strong>. </li>
+<li>Copy and paste the organization name as shown in the popup window and click <strong>Delete</strong> button. </li>
+</ol>
+<h2><a class="header" href="#conclusion" id="conclusion">Conclusion</a></h2>
+<p>You have completed all exercises in this lab. In this lab, we have tried to</p>
+<ul>
+<li>develop Java applications based on Spring Boot with Visual Studio Code.</li>
+<li>deploy and run Java applications on Azure App Service on Linux. </li>
+<li>implement CI/CD for Spring Boot project with Azure DevOps.</li>
+</ul>
+<p>Hope you've got the hands-on experience and better understanding regarding how Java and Azure could work together. </p>
+<h3><a class="header" href="#additional-resources" id="additional-resources">Additional resources</a></h3>
+<p>If you want to learn more about Java on Azure, the following resources could be used as starting points.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/java/azure/?view=azure-java-stable">Azure for Java developers</a></li>
+<li><a href="https://code.visualstudio.com/docs/languages/java">Java in Visual Studio Code</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/devops/java/?view=vsts">Working with Azure DevOps and Java</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../apim/integration-verification.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../apim/integration-verification.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
