@@ -26,7 +26,7 @@ In this lab, we will use [OpenJDK](https://openjdk.java.net/) and [Maven](https:
 1. In the Command Prompt window, run command `java --version` followed by `mvn --version`.
 1. The output in the Command Prompt should look like the following screenshot.
 
-    ![Java settings](https://readylab.z19.web.core.windows.net/images/ex0/java-settings.png)
+    ![Java settings](images/ex0/java-settings.png)
 
 If you can see the similar output as shown in the above screenshot, the Java settings are correct.
 
@@ -34,10 +34,10 @@ If you can see the similar output as shown in the above screenshot, the Java set
 
 On the lab machine, MySQL is installed and a local instance is configured. We will use it as the local database engine for testing purpose when we develop Java applications. Please follow the steps below to verify the local instance of MySQL is working.
 
-1. On the lab machine, click the **MySQL Workbench** icon ![MySQL Workbench icon](https://readylab.z19.web.core.windows.net/images/ex0/mysql-wb-icon.png) on Windows task bar to launch it.
+1. On the lab machine, click the **MySQL Workbench** icon ![MySQL Workbench icon](images/ex0/mysql-wb-icon.png) on Windows task bar to launch it.
 1. In the window of MySQL Workbench, click **Local instance MySQL80**, as shown in the screenshot below, input the password `P@ssw0rd1` and click **OK** button.
 
-    ![MySQL Workbench connection](https://readylab.z19.web.core.windows.net/images/ex0/mysql-wb-connect.png)
+    ![MySQL Workbench connection](images/ex0/mysql-wb-connect.png)
 
 1. If the local MySQL instance is working well, the Workbench should connect to it successfully, and you should see the Server Status as **Running** when you click the **Server Status** on the left Navigator.
 1. Let's create a new database that we will use in the later exercises. In the **Query 1** window, run the following T-SQL to create a new database.
@@ -55,14 +55,14 @@ In this lab, we will use Azure Database for MySQL as our database engine. There 
 1. Open browser and explore [https://portal.azure.com](https://portal.azure.com), sign in with the Azure account provided. 
 1. Click **Resource groups > *[the name of the resource group]***. You will see 4 resources which look similar to the following screenshot.
 
-    ![Azure Resources](https://readylab.z19.web.core.windows.net/images/ex0/azure-resources.png)
+    ![Azure Resources](images/ex0/azure-resources.png)
 
 1. Click the name of Azure Database for MySQL server to view its details. 
-1. Click Cloud Shell button ![Cloud Shell](https://readylab.z19.web.core.windows.net/images/ex0/cloud-shell.png) to open the cloud shell. Select **Bash** as the shell environment. 
+1. Click Cloud Shell button ![Cloud Shell](images/ex0/cloud-shell.png) to open the cloud shell. Select **Bash** as the shell environment. 
 
     > [!NOTE]
     > You might have to initialize the Cloud Shell and configure the storage account that it needs to use. If prompt, choose **Show advanced settings**, and then choose to use **existing** resource group and storage account, and create a new file share. See screenshot below as a reference. 
-    > ![Initialize cloud shell](https://readylab.z19.web.core.windows.net/images/ex0/cloud-shell-init.png)
+    > ![Initialize cloud shell](images/ex0/cloud-shell-init.png)
 
 1. In cloud shell window, connect to MySQL server with the following command: 
 
@@ -72,7 +72,7 @@ In this lab, we will use Azure Database for MySQL as our database engine. There 
     
     You can find *[mysql server name]* from the **Overview** page of your Azure MySQL instance. See screenshot below as a reference. 
     
-    ![MySQL sign in](https://readylab.z19.web.core.windows.net/images/ex0/mysql-signin.png)
+    ![MySQL sign in](images/ex0/mysql-signin.png)
 
 1. When prompt, type the password `P@ssw0rd1`. 
 1. When you connect to MySQL server successfully, type the following command to view all existing databases. 
@@ -94,13 +94,13 @@ In this lab, we will use Azure Database for MySQL as our database engine. There 
 1. Type `quit;` to close the connection, and then close the cloud shell window. 
 1. Click **Connection security** of Azure MySQL instance, turn on **Allow access to Azure services** and click **Save**. See screenshot below. 
 
-    ![Connection security](https://readylab.z19.web.core.windows.net/images/ex0/mysql-conn-sec.png)
+    ![Connection security](images/ex0/mysql-conn-sec.png)
 
 ### 0.4 - Extensions of Visual Studio Code
 
 In this lab, we will use [Visual Studio Code](https://code.visualstudio.com/docs) as our development environment for Java applications. The Java language support in Visual Studio Code is provided through a set of extensions. You can view these extensions in Visual Studio Code. For more information about using Java in VS Code, please see [Java in Visual Studio Code](https://code.visualstudio.com/docs/languages/java).
 
-1. Open VSCode by clicking its icon ![vscode icon](https://readylab.z19.web.core.windows.net/images/ex0/vscode-icon.png) on Windows task bar.
+1. Open VSCode by clicking its icon ![vscode icon](images/ex0/vscode-icon.png) on Windows task bar.
 1. Open the extensions panel by clicking its icon or press `Ctrl+Shift+X`. You should see all extensions that are required by this lab.
 
 ## Exercise 1 - Build a Sprint Boot web app in VS Code
@@ -115,7 +115,7 @@ Please follow the steps below to create a Sprint Boot project in VS Code from sc
 1. In VS Code, open Command Palette by clicking **View > Command Palette** or pressing `Ctrl+Shift+P`.
 1. In Command Palette, input `Spring` and then select **Spring Initializr: Generate a Maven Project**. See screenshot below for a reference.
 
-    ![Spring Initializr](https://readylab.z19.web.core.windows.net/images/ex1/create-project-1.png)
+    ![Spring Initializr](images/ex1/create-project-1.png)
 
 1. Follow the steps of Spring Initializr wizard with the following values.
 
@@ -128,12 +128,12 @@ Please follow the steps below to create a Sprint Boot project in VS Code from sc
 
 1. For dependencies, select **DevTools** and **Web**. See screenshot below.
 
-    ![Select dependencies](https://readylab.z19.web.core.windows.net/images/ex1/create-project-2.png)
+    ![Select dependencies](images/ex1/create-project-2.png)
 
 1. In the Select Folder window, select `C:\Code` as the folder and click **Generate into this folder** button.
 1. Once the project is generated, click **Open** button on the popup in VS Code to open the folder in VS Code.
 
-    ![Popup](https://readylab.z19.web.core.windows.net/images/ex1/create-project-3.png)
+    ![Popup](images/ex1/create-project-3.png)
 
 By following the Spring Initializr wizard, a Spring Boot project is created. This is an empty project. It provides us a project structure based on which we can build our applications. The folder structure of the project is the typical structure of Maven projects.
 
@@ -168,7 +168,7 @@ Let's add a simple web controller to handle the web request.
 1. When the project is running successfully, you will see the output in the Terminal which is similar as *Started DemoApplication in 11.869 seconds (JVM running for 13.251)*. 
 1. Open a browser and visit `http://localhost:8080`. You should see a simple page as shown in the screenshot below. 
     
-    ![Hello, Spring Boot](https://readylab.z19.web.core.windows.net/images/ex1/browser-simplepage.png)
+    ![Hello, Spring Boot](images/ex1/browser-simplepage.png)
 
 1. Close the browser, and stop the application by pressing `Ctrl+C` in Terminal. 
 
@@ -179,13 +179,13 @@ To debug the Java application locally in VS Code, we need to configure the `laun
 1. In VS Code, click Debug icon on the left navigation or press `Ctrl+Shift+D` to open the Debug Panel. 
 1. Click the **Configure** button to generate a launch.json file. See screenshot below for details. VS Code helps us generate the launch.json automatically based on the project settings.
     
-    ![Configure debug](https://readylab.z19.web.core.windows.net/images/ex1/debug-configure.png)
+    ![Configure debug](images/ex1/debug-configure.png)
 
 1. Open `HelloController.java` and set a breakpoint on the code, `return "Hello, Spring Boot!";`. 
 1. Press `F5` or click **Start Debugging** button on the Debug Panel. 
 1. When the application is running, open a browser and visit `http://localhost:8080`. The breakpoint should be hit, as shown in the screenshot below. Press `F5` or click **Continue** and you will see the page in the browser. 
     
-    ![Hit breakpoint](https://readylab.z19.web.core.windows.net/images/ex1/debug-bp.png)
+    ![Hit breakpoint](images/ex1/debug-bp.png)
 
 1. Stop the debugging by clicking **Stop** button or pressing `Shift+F5`. 
 
@@ -202,7 +202,7 @@ To clone the project, follow the steps below.
 1. In the lab machine, launch the **Command Prompt**. Switch the work directory to **C:\Code** by typing the command: `cd C:\Code`.
 1. Clone the repository with the command: `git clone https://github.com/chunliu/todowebjava.git`. When the clone completes, the output in the Command Prompt looks like the following screenshot, and a new folder, **todowebjava**, is created in C:\Code.
 
-    ![Clone the repository](https://readylab.z19.web.core.windows.net/images/ex2/clone.png)
+    ![Clone the repository](images/ex2/clone.png)
 
 1. In the Command Prompt, type `cd todowebjava` to go into the folder, and then type `code .` to open the folder in VS Code. 
 1. Explore the project structure and the Java code in the folder **src/main/java/com/azurelabs/todowebjava**. This project uses [Spring Data JPA](https://spring.io/projects/spring-data-jpa) to read and persist data to MySQL database. 
@@ -248,20 +248,20 @@ Follow the steps below to update the code and publish the web app to the Azure A
 1. In VS Code, click **Azure** icon on the left navigation to open App Service explorer, and then click **Sign in to Azure**. 
 1. Click **Copy & Open** in the popup window. See screenshot below. A browser window will be opened. 
     
-    ![Azure Sign In](https://readylab.z19.web.core.windows.net/images/ex2/azure-signin.png)
+    ![Azure Sign In](images/ex2/azure-signin.png)
 
 1. In the browser window, right click in the **Code** input, select **Paste** to paste the device code, and click **Continue** button. See screenshot below as a reference. 
 
-    ![Device code](https://readylab.z19.web.core.windows.net/images/ex2/azure-device-code.png)
+    ![Device code](images/ex2/azure-device-code.png)
 
 1. Sign in with the Azure account.
 1. When you sign in successfully and see the following screen, close the browser window and go back to VS Code. 
 
-    ![Azure sign in complete](https://readylab.z19.web.core.windows.net/images/ex2/azure-signin-complete.png)
+    ![Azure sign in complete](images/ex2/azure-signin-complete.png)
 
 1. In **Azure App Service** explorer, expand the corresponding subscription and locate the Azure Web App. See screenshot below. 
 
-    ![App service explorer](https://readylab.z19.web.core.windows.net/images/ex2/azure-appsvc.png)
+    ![App service explorer](images/ex2/azure-appsvc.png)
 
 1. Right click **Application Settings** and click **Add New Setting**. Follow the instruction to add the following application settings. Alternatively you can also add these settings in Azure Portal. 
 
@@ -283,7 +283,7 @@ Follow the steps below to update the code and publish the web app to the Azure A
     > [!NOTE]
     > You may have to restart the website in Azure Portal and wait for several minutes before you can see the home page of the website.
 
-    ![Deploy success](https://readylab.z19.web.core.windows.net/images/ex2/azure-deploy-success.png)
+    ![Deploy success](images/ex2/azure-deploy-success.png)
 
 1. To verify if the site works properly, you can create a new task on the Todo page. Furthermore, you can use MySQL Workbench to connect to the MySQL server and query if the task you created is in the database.
 
@@ -300,7 +300,7 @@ Follow the steps below to create an Azure DevOps organization. We will use it to
 1. After signing in successfully, click **Start free** button on the Azure DevOps page, and then follow the wizard to create the organization.
 1. When the organization is ready, create an Azure DevOps project by providing a project name, for example, ***todowebjava***, and clicking **Create project** button. See screenshot below as a reference. 
 
-    ![Create project](https://readylab.z19.web.core.windows.net/images/ex3/create-proj.png)
+    ![Create project](images/ex3/create-proj.png)
 
 ### 3.2 - Push the code repository to Azure DevOps Repos
 
@@ -314,12 +314,12 @@ Azure Pipelines support multiple source repositories, such as GitHub, Bitbucket 
 
     To get the *[Azure Repos URL]*, on the Azure DevOps project page, click **Repos > Files**. You will see ***push an existing repository from command line*** option. Copy the URL from there. See screenshot below as a reference. 
 
-    ![Origin URL](https://readylab.z19.web.core.windows.net/images/ex3/origin-url.png)
+    ![Origin URL](images/ex3/origin-url.png)
 
 1. Then push the repository to Azure Repos with command: `git push -u origin --all`. When prompt, sign in with the Azure account provided with the lab. 
 1. Once the repository is pushed successfully, you will be able to see the code in Azure DevOps. See screenshot below as a reference. 
 
-    ![Azure Repos](https://readylab.z19.web.core.windows.net/images/ex3/azure-repos-code.png)
+    ![Azure Repos](images/ex3/azure-repos-code.png)
 
 ### 3.3 - Create the build pipeline
 
@@ -330,7 +330,7 @@ When the source code is in Azure Repos, we can create a build pipeline to build 
 1. Select **Azure Repos Git** as the source, and choose the corresponding project repository, then click **Continue**.
 1. On the **Choose a template** page, choose **Maven** as the template. See screenshot below as a reference. 
 
-    ![maven](https://readylab.z19.web.core.windows.net/images/ex3/maven-template.png)
+    ![maven](images/ex3/maven-template.png)
 
 1. When the build pipeline is created based on the Maven template, you don't even need to make any change. Azure Pipelines understand the Maven project and the default configurations are good enough for our lab. Go ahead to click **Save & queue** to queue a new build.
 1. When the build is kicked off, you can monitor the build status. When the build completes successfully, click **Summary** and **Tests** tabs to view the results. 
@@ -343,24 +343,24 @@ Follow the steps below to create the release pipeline.
 1. On the **New release pipeline** page, select **Deploy a Java app to Azure App Service** template. 
 1. Click **Add an artifact**, choose the build pipeline that you create in the previous exercise, choose **Latest** for **Default version**, and then click **Add**. See screenshot below as a reference. 
 
-    ![add artifact](https://readylab.z19.web.core.windows.net/images/ex3/release-artifact.png)
+    ![add artifact](images/ex3/release-artifact.png)
 
 1. Click **1 job, 2 tasks** link on **Stage 1** box. 
 1. We need to configure an Azure connection for the deployment. Click the **Manage** link besides **Azure subscription**. It will open the Azure connection settings page.
 1. On the new page, click **New service connection** dropdown and click **Azure Resource Manager**. 
 1. On the popup window, input a **Connection name**, such as *Java Web App*, and choose the corresponding resource group from the dropdown, and then click **OK**. See screenshot below as a reference. 
 
-    ![Azure Connection](https://readylab.z19.web.core.windows.net/images/ex3/azure-connection.png)
+    ![Azure Connection](images/ex3/azure-connection.png)
 
 1. When the Azure connection is created successfully, go back to the **New release pipeline** page. Now you should be able to see the Azure connection you created in the **Azure subscription** dropdown list. If not, please click the refresh button besides the dropdown list and try again. Choose the Azure connection from the dropdown list. 
 1. For **App type**, choose **Web App on Linux**. And choose the corresponding Azure web app as **App service name**. See screenshot below as a reference. 
 
-    ![Release stage](https://readylab.z19.web.core.windows.net/images/ex3/release-stage.png)
+    ![Release stage](images/ex3/release-stage.png)
 
 1. As in our code we build a jar file rather than a war file, we will use **Deploy Jar to Azure App Service** task rather than **Deploy War to Azure App Service** task. So right click on **Deploy War to Azure App Service** and disable it, and right click on **Deploy Jar to Azure App Service** to enable it. 
 1. The most of the configurations for **Deploy Jar to Azure App Service** should have been generated. As in our code there is only one jar file, we can choose it specifically. Click the **...** button besides **Package or folder** option and locate the **todowebjava-0.0.1-SNAPSHOT.jar** file as shown in the screenshot below. 
 
-    ![Locate Jar](https://readylab.z19.web.core.windows.net/images/ex3/locate-jar.png)
+    ![Locate Jar](images/ex3/locate-jar.png)
 
 1. With the above settings, we finish the configuration of the release pipeline. Click the **Save** button, and then **Release > Create a release** to test the release pipeline. 
 1. On the **Create a new release** page, select **Stage 1** from the dropdown list and click **Create** button. 
